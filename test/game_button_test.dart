@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:test/test.dart';
 import 'package:leyline_game/game_button.dart';
+import 'package:test/test.dart';
 
 void main() {
-  test('default values test', () {
+  test('Default values of GameButton are correct', () {
     var gameButton = new GameButton();
 
-    expect(gameButton.id, null);
-    expect(gameButton.text, "");
-    expect(gameButton.direction, ArrowDirections.UP);
+    expect(gameButton.id, isNull);
+    expect(gameButton.text, isEmpty);
+    expect(gameButton.direction, ArrowDirection.UP);
     expect(gameButton.bg, Colors.grey);
-    expect(gameButton.enabled, true);
+    expect(gameButton.enabled, isTrue);
   });
 }

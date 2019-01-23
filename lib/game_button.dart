@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum ArrowDirections {
+enum ArrowDirection {
     UP,
     UP_RIGHT,
     RIGHT,
@@ -14,14 +14,14 @@ enum ArrowDirections {
 class GameButton {
     final id;
     String text;
-    ArrowDirections direction;
+    ArrowDirection direction;
     Color bg;
     bool enabled;
 
     GameButton({
         this.id,
         this.text = "",
-        this.direction = ArrowDirections.UP,
+        this.direction = ArrowDirection.UP,
         this.bg = Colors.grey,
         this.enabled = true,
     });
