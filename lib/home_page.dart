@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:leyline_game/custom_dialog.dart';
 import 'package:leyline_game/game_button.dart';
 
@@ -17,6 +18,7 @@ class _HomePageState extends State<HomePage> {
     void initState() {
         super.initState();
         buttonsList = doInit();
+        SystemChrome.setEnabledSystemUIOverlays([]);
     }
 
     List<GameButton> doInit() {
@@ -184,16 +186,15 @@ class _HomePageState extends State<HomePage> {
     @override
     Widget build(BuildContext context) {
         return new Scaffold(
-            appBar: new AppBar(
-                title: new Text("Leyline"),
-            ),
-            body: Column(
+            body: Row(
+                mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                     new Expanded(
                         child: new GridView.builder(
-                            padding: const EdgeInsets.all(10.0),
+                            padding: const EdgeInsets.fromLTRB(
+                                250, 20, 250, 20),
                             gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 3,
                                 childAspectRatio: 1.0,
@@ -206,13 +207,14 @@ class _HomePageState extends State<HomePage> {
                                 width: 100.0,
                                 height: 100.0,
                                 child: new RaisedButton(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(1.0),
                                     onPressed: buttonsList[i].enabled ?
                                         () => playGame(buttonsList[i]) : null,
-                                    child: new Text(buttonsList[i].text,
+                                    child: new Text(
+                                        buttonsList[i].id.toString(),
                                         style: new TextStyle(
                                             color: Colors.white,
-                                            fontSize: 20.0
+                                            fontSize: 60.0
                                         ),
                                     ),
                                     color: buttonsList[i].bg,
@@ -220,16 +222,6 @@ class _HomePageState extends State<HomePage> {
                                 ),
                             ),
                         ),
-                    ),
-                    new RaisedButton(
-                        child: new Text(
-                            "Reset",
-                            style: new TextStyle(
-                                color: Colors.white, fontSize: 20.0)
-                        ),
-                        color: Colors.red,
-                        padding: const EdgeInsets.all(20.0),
-                        onPressed: resetGame,
                     ),
                 ],
             ),

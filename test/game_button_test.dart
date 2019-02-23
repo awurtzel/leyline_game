@@ -3,13 +3,13 @@ import 'package:leyline_game/game_button.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('Default values of GameButton are correct', () {
-    var gameButton = new GameButton();
+    test('Default values of GameButton are correct', () {
+        var gameButton = new GameButton();
 
-    expect(gameButton.id, isNull);
-    expect(gameButton.text, isEmpty);
-    expect(gameButton.direction, ArrowDirection.UP);
-    expect(gameButton.bg, Colors.grey);
-    expect(gameButton.enabled, isTrue);
-  });
+        expect(gameButton.id, isNull);
+        expect(gameButton.text, isEmpty);
+        expect(gameButton.direction, ArrowDirection.UP);
+        expect(gameButton.bg, Colors.grey);
+        expect(gameButton.enabled, isTrue);
+    });
 }
