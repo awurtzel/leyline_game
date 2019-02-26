@@ -9,7 +9,7 @@ void main() {
         expect(gameButton.id, isNull);
         expect(gameButton.text, isEmpty);
         expect(gameButton.direction, ArrowDirection.UP);
-        expect(gameButton.bg, Colors.grey);
+        expect(gameButton.bgColor, Colors.grey);
         expect(gameButton.enabled, isTrue);
     });
 }
