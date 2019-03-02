@@ -60,6 +60,6 @@ void main() {
     List<int> seedList = [2, 1, 3, 5, 4, 6, 8, 7, 9];
     testGameBoard.seed(seedList);
 
-    expect(testGameBoard.isInLOS(2, 5), isTrue);
+    expect(testGameBoard.inSameBackwardDiag(2, 5), isTrue);
   });
 }
