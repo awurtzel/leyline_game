@@ -28,7 +28,18 @@ void main() {
                           8, 7, 9];
     testGameBoard.seed(seedList);
 
-    expect(testGameBoard.isValidPath(), true);
+    expect(testGameBoard.isValidPath(), isTrue);
+  });
+
+  test('Invalid Test Path is an invalid path', () {
+    GameBoard testGameBoard = new GameBoard(3);
+
+    List<int> seedList = [2, 1, 3,
+                          4, 5, 6,
+                          8, 7, 9];
+    testGameBoard.seed(seedList);
+
+    expect(testGameBoard.isValidPath(), isFalse);
   });
 
   test('Indexes on the same row in any order are in LOS', () {
@@ -86,4 +97,54 @@ void main() {
     expect(testGameBoard.inSameForwardDiag(8, 1), isFalse);
     expect(testGameBoard.inSameForwardDiag(5, 9), isFalse);
   });
+
+  test('Last step in path can be in any position', () {
+    expect(true, isTrue);
+  });
+
+  test('Invalid Parameterized 3x3 Randomly Generated', () {
+    for(int i; i < invalidTestCases.length; i++) {
+      GameBoard testGameBoard = new GameBoard(3);
+
+      testGameBoard.seed(invalidTestCases[i]);
+
+      expect(testGameBoard.isValidPath(), isFalse);
+    }
+  });
+
+  test('Valid Parameterized 3x3 Randomly Generated', () {
+    for(int i; i < invalidTestCases.length; i++) {
+      GameBoard testGameBoard = new GameBoard(3);
+
+      testGameBoard.seed(invalidTestCases[i]);
+
+      expect(testGameBoard.isValidPath(), isTrue);
+    }
+  });
 }
+
+List invalidTestCases = [
+  [ 6, 8, 4,
+    7, 1, 9,
+    5, 3, 2
+  ],
+  [ 7, 5, 9,
+    6, 1, 8,
+    2, 3, 4
+  ],
+  [ 7, 1, 8,
+    5, 2, 6,
+    3, 9, 4
+  ],
+  [ 1, 5, 3,
+    7, 9, 8,
+    6, 2, 4
+  ],
+];
+
+List validTestCases = [
+  [ 1, 9, 6,
+    2, 3, 7,
+    5, 8, 4
+  ],
+];
