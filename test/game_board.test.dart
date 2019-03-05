@@ -11,7 +11,9 @@ void main() {
     GameBoard testGameBoard = new GameBoard(3);
     List<int> originalPath = testGameBoard.pathList;
 
-    List<int> seedList = [2, 1, 3, 5, 4, 6, 8, 7, 9];
+    List<int> seedList = [2, 1, 3,
+                          5, 4, 6,
+                          8, 7, 9];
     testGameBoard.seed(seedList);
 
     expect(seedList, testGameBoard.pathList);
@@ -21,7 +23,9 @@ void main() {
   test('Test Path is a valid path', () {
     GameBoard testGameBoard = new GameBoard(3);
 
-    List<int> seedList = [2, 1, 3, 5, 4, 6, 8, 7, 9];
+    List<int> seedList = [2, 1, 3,
+                          5, 4, 6,
+                          8, 7, 9];
     testGameBoard.seed(seedList);
 
     expect(testGameBoard.isValidPath(), true);
@@ -30,7 +34,9 @@ void main() {
   test('Indexes on the same row in any order are in LOS', () {
     GameBoard testGameBoard = new GameBoard(3);
 
-    List<int> seedList = [2, 1, 3, 5, 4, 6, 8, 7, 9];
+    List<int> seedList = [2, 1, 3,
+                          5, 4, 6,
+                          8, 7, 9];
     testGameBoard.seed(seedList);
 
     expect(testGameBoard.inSameRow(2, 3), isTrue);
@@ -44,7 +50,9 @@ void main() {
   test('Indexes on the same column in any order are in LOS', () {
     GameBoard testGameBoard = new GameBoard(3);
 
-    List<int> seedList = [2, 1, 3, 5, 4, 6, 8, 7, 9];
+    List<int> seedList = [2, 1, 3,
+                          5, 4, 6,
+                          8, 7, 9];
     testGameBoard.seed(seedList);
 
     expect(testGameBoard.inSameColumn(2, 5), isTrue);
@@ -57,9 +65,25 @@ void main() {
   test('Indexes on the same diagonal in any order are in LOS', () {
     GameBoard testGameBoard = new GameBoard(3);
 
-    List<int> seedList = [2, 1, 3, 5, 4, 6, 8, 7, 9];
+    List<int> seedList = [2, 1, 3,
+                          5, 4, 6,
+                          8, 7, 9];
     testGameBoard.seed(seedList);
 
-    expect(testGameBoard.isInLOS(2, 5), isTrue);
+    expect(testGameBoard.inSameBackwardDiag(2, 4), isTrue);
+    expect(testGameBoard.inSameBackwardDiag(2, 9), isTrue);
+    expect(testGameBoard.inSameBackwardDiag(9, 2), isTrue);
+    expect(testGameBoard.inSameBackwardDiag(5, 7), isTrue);
+    expect(testGameBoard.inSameBackwardDiag(8, 4), isFalse);
+    expect(testGameBoard.inSameBackwardDiag(2, 7), isFalse);
+    expect(testGameBoard.inSameBackwardDiag(2, 6), isFalse);
+
+    expect(testGameBoard.inSameForwardDiag(8, 4), isTrue);
+    expect(testGameBoard.inSameForwardDiag(8, 3), isTrue);
+    expect(testGameBoard.inSameForwardDiag(4, 3), isTrue);
+    expect(testGameBoard.inSameForwardDiag(7, 6), isTrue);
+    expect(testGameBoard.inSameForwardDiag(2, 4), isFalse);
+    expect(testGameBoard.inSameForwardDiag(8, 1), isFalse);
+    expect(testGameBoard.inSameForwardDiag(5, 9), isFalse);
   });
 }

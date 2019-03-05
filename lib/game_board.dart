@@ -82,7 +82,28 @@ class GameBoard {
   }
 
   bool inSameBackwardDiag(int origin, int destination) {
-    return false;
+    int indexOfOrigin = pathList.indexOf(origin);
+    int indexOfDestination = pathList.indexOf(destination);
+
+    int columnOfOrigin = (indexOfOrigin % boardSize).floor();
+    int columnOfDestination = (indexOfDestination % boardSize).floor();
+    int rowOfOrigin = (indexOfOrigin / boardSize).floor();
+    int rowOfDestination = (indexOfDestination / boardSize).floor();
+
+    return (columnOfOrigin - rowOfOrigin) ==
+        (columnOfDestination - rowOfDestination);
   }
 
+  bool inSameForwardDiag(int origin, int destination) {
+    int indexOfOrigin = pathList.indexOf(origin);
+    int indexOfDestination = pathList.indexOf(destination);
+
+    int columnOfOrigin = (indexOfOrigin % boardSize).floor();
+    int columnOfDestination = (indexOfDestination % boardSize).floor();
+    int rowOfOrigin = (indexOfOrigin / boardSize).floor();
+    int rowOfDestination = (indexOfDestination / boardSize).floor();
+
+    return (rowOfOrigin - rowOfDestination) ==
+        (columnOfDestination - columnOfOrigin);
+  }
 }
