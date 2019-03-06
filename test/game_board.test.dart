@@ -103,27 +103,27 @@ void main() {
   });
 
   test('Invalid Parameterized 3x3 Randomly Generated', () {
-    for(int i; i < invalidTestCases.length; i++) {
+    for(int i = 0; i < invalidTestCases3x3.length; i++) {
       GameBoard testGameBoard = new GameBoard(3);
 
-      testGameBoard.seed(invalidTestCases[i]);
+      testGameBoard.seed(invalidTestCases3x3[i]);
 
       expect(testGameBoard.isValidPath(), isFalse);
     }
   });
 
   test('Valid Parameterized 3x3 Randomly Generated', () {
-    for(int i; i < invalidTestCases.length; i++) {
+    for(int i = 0; i < validTestCases3x3.length; i++) {
       GameBoard testGameBoard = new GameBoard(3);
 
-      testGameBoard.seed(invalidTestCases[i]);
+      testGameBoard.seed(validTestCases3x3[i]);
 
       expect(testGameBoard.isValidPath(), isTrue);
     }
   });
 }
 
-List invalidTestCases = [
+List invalidTestCases3x3 = [
   [ 6, 8, 4,
     7, 1, 9,
     5, 3, 2
@@ -140,11 +140,23 @@ List invalidTestCases = [
     7, 9, 8,
     6, 2, 4
   ],
+  [ 2, 7, 5,
+    4, 9, 1,
+    3, 8, 6
+  ],
+  [ 1, 7, 2,
+    9, 6, 3,
+    5, 4, 8
+  ],
 ];
 
-List validTestCases = [
+List validTestCases3x3 = [
   [ 1, 9, 6,
     2, 3, 7,
     5, 8, 4
+  ],
+  [ 2, 9, 8,
+    3, 1, 7,
+    4, 5, 6
   ],
 ];
