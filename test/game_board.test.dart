@@ -11,9 +11,7 @@ void main() {
     GameBoard testGameBoard = new GameBoard(3);
     List<int> originalPath = testGameBoard.pathList;
 
-    List<int> seedList = [2, 1, 3,
-                          5, 4, 6,
-                          8, 7, 9];
+    List<int> seedList = [2, 1, 3, 5, 4, 6, 8, 7, 9];
     testGameBoard.seed(seedList);
 
     expect(seedList, testGameBoard.pathList);
@@ -23,9 +21,7 @@ void main() {
   test('Test Path is a valid path', () {
     GameBoard testGameBoard = new GameBoard(3);
 
-    List<int> seedList = [2, 1, 3,
-                          5, 4, 6,
-                          8, 7, 9];
+    List<int> seedList = [2, 1, 3, 5, 4, 6, 8, 7, 9];
     testGameBoard.seed(seedList);
 
     expect(testGameBoard.isValidPath(), isTrue);
@@ -34,9 +30,7 @@ void main() {
   test('Invalid Test Path is an invalid path', () {
     GameBoard testGameBoard = new GameBoard(3);
 
-    List<int> seedList = [2, 1, 3,
-                          4, 5, 6,
-                          8, 7, 9];
+    List<int> seedList = [2, 1, 3, 4, 5, 6, 8, 7, 9];
     testGameBoard.seed(seedList);
 
     expect(testGameBoard.isValidPath(), isFalse);
@@ -45,9 +39,7 @@ void main() {
   test('Indexes on the same row in any order are in LOS', () {
     GameBoard testGameBoard = new GameBoard(3);
 
-    List<int> seedList = [2, 1, 3,
-                          5, 4, 6,
-                          8, 7, 9];
+    List<int> seedList = [2, 1, 3, 5, 4, 6, 8, 7, 9];
     testGameBoard.seed(seedList);
 
     expect(testGameBoard.inSameRow(2, 3), isTrue);
@@ -61,9 +53,7 @@ void main() {
   test('Indexes on the same column in any order are in LOS', () {
     GameBoard testGameBoard = new GameBoard(3);
 
-    List<int> seedList = [2, 1, 3,
-                          5, 4, 6,
-                          8, 7, 9];
+    List<int> seedList = [2, 1, 3, 5, 4, 6, 8, 7, 9];
     testGameBoard.seed(seedList);
 
     expect(testGameBoard.inSameColumn(2, 5), isTrue);
@@ -76,9 +66,7 @@ void main() {
   test('Indexes on the same diagonal in any order are in LOS', () {
     GameBoard testGameBoard = new GameBoard(3);
 
-    List<int> seedList = [2, 1, 3,
-                          5, 4, 6,
-                          8, 7, 9];
+    List<int> seedList = [2, 1, 3, 5, 4, 6, 8, 7, 9];
     testGameBoard.seed(seedList);
 
     expect(testGameBoard.inSameBackwardDiag(2, 4), isTrue);
@@ -98,12 +86,21 @@ void main() {
     expect(testGameBoard.inSameForwardDiag(5, 9), isFalse);
   });
 
+  test('Game Buttons get populated with text after init', () {
+    GameBoard testGameBoard = new GameBoard(3);
+
+    for (int i = 0; i < testGameBoard.buttonsList.length; i++) {
+      expect(testGameBoard.buttonsList[i].text,
+          testGameBoard.pathList[i].toString());
+    }
+  });
+
   test('Last step in path can be in any position', () {
     expect(true, isTrue);
   });
 
   test('Invalid Parameterized 3x3 Randomly Generated', () {
-    for(int i = 0; i < invalidTestCases3x3.length; i++) {
+    for (int i = 0; i < invalidTestCases3x3.length; i++) {
       GameBoard testGameBoard = new GameBoard(3);
 
       testGameBoard.seed(invalidTestCases3x3[i]);
@@ -113,7 +110,7 @@ void main() {
   });
 
   test('Valid Parameterized 3x3 Randomly Generated', () {
-    for(int i = 0; i < validTestCases3x3.length; i++) {
+    for (int i = 0; i < validTestCases3x3.length; i++) {
       GameBoard testGameBoard = new GameBoard(3);
 
       testGameBoard.seed(validTestCases3x3[i]);
@@ -124,39 +121,15 @@ void main() {
 }
 
 List invalidTestCases3x3 = [
-  [ 6, 8, 4,
-    7, 1, 9,
-    5, 3, 2
-  ],
-  [ 7, 5, 9,
-    6, 1, 8,
-    2, 3, 4
-  ],
-  [ 7, 1, 8,
-    5, 2, 6,
-    3, 9, 4
-  ],
-  [ 1, 5, 3,
-    7, 9, 8,
-    6, 2, 4
-  ],
-  [ 2, 7, 5,
-    4, 9, 1,
-    3, 8, 6
-  ],
-  [ 1, 7, 2,
-    9, 6, 3,
-    5, 4, 8
-  ],
+  [6, 8, 4, 7, 1, 9, 5, 3, 2],
+  [7, 5, 9, 6, 1, 8, 2, 3, 4],
+  [7, 1, 8, 5, 2, 6, 3, 9, 4],
+  [1, 5, 3, 7, 9, 8, 6, 2, 4],
+  [2, 7, 5, 4, 9, 1, 3, 8, 6],
+  [1, 7, 2, 9, 6, 3, 5, 4, 8],
 ];
 
 List validTestCases3x3 = [
-  [ 1, 9, 6,
-    2, 3, 7,
-    5, 8, 4
-  ],
-  [ 2, 9, 8,
-    3, 1, 7,
-    4, 5, 6
-  ],
+  [1, 9, 6, 2, 3, 7, 5, 8, 4],
+  [2, 9, 8, 3, 1, 7, 4, 5, 6],
 ];
