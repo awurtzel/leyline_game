@@ -39,12 +39,14 @@ class _HomePageState extends State<HomePage> {
     if (winner != -1) {
       if (winner == 1) {
         showDialog(
-            context: context,
-            builder: (_) => new CustomDialog(
-                  "Player 1 Won",
-                  "Press the reset button to start again.",
-                  resetGame,
-                ));
+          context: context,
+          builder: (_) =>
+          new CustomDialog(
+            "Player 1 Won",
+            "Press the reset button to start again.",
+            resetGame,
+          )
+        );
       }
     }
     return winner;

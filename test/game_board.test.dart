@@ -53,7 +53,9 @@ void main() {
   test('Indexes on the same column in any order are in LOS', () {
     GameBoard testGameBoard = new GameBoard(3);
 
-    List<int> seedList = [2, 1, 3, 5, 4, 6, 8, 7, 9];
+    List<int> seedList = [2, 1, 3,
+                          5, 4, 6,
+                          8, 7, 9];
     testGameBoard.seed(seedList);
 
     expect(testGameBoard.inSameColumn(2, 5), isTrue);
@@ -66,7 +68,9 @@ void main() {
   test('Indexes on the same diagonal in any order are in LOS', () {
     GameBoard testGameBoard = new GameBoard(3);
 
-    List<int> seedList = [2, 1, 3, 5, 4, 6, 8, 7, 9];
+    List<int> seedList = [2, 1, 3,
+                          5, 4, 6,
+                          8, 7, 9];
     testGameBoard.seed(seedList);
 
     expect(testGameBoard.inSameBackwardDiag(2, 4), isTrue);

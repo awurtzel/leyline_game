@@ -44,10 +44,12 @@ class GameBoard {
   }
 
   bool isInLOS(int origin, int destination) {
-    bool los = inSameRow(origin, destination) ||
-        inSameColumn(origin, destination) ||
-        inSameForwardDiag(origin, destination) ||
-        inSameBackwardDiag(origin, destination);
+    bool los = false;
+
+    los = inSameRow(origin, destination)
+      || inSameColumn(origin, destination);
+      //|| inSameForwardDiag(origin, destination)
+      //|| inSameBackwardDiag(origin, destination);
 
     return los;
   }
@@ -62,10 +64,10 @@ class GameBoard {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
+    identical(this, other) ||
       other is GameBoard &&
-          runtimeType == other.runtimeType &&
-          buttonsList == other.buttonsList;
+        runtimeType == other.runtimeType &&
+        buttonsList == other.buttonsList;
 
   @override
   int get hashCode => buttonsList.hashCode;
