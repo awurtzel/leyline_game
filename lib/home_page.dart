@@ -39,14 +39,12 @@ class _HomePageState extends State<HomePage> {
     if (winner != -1) {
       if (winner == 1) {
         showDialog(
-          context: context,
-          builder: (_) =>
-          new CustomDialog(
-            "Player 1 Won",
-            "Press the reset button to start again.",
-            resetGame,
-          )
-        );
+            context: context,
+            builder: (_) => new CustomDialog(
+                  "Player 1 Won",
+                  "Press the reset button to start again.",
+                  resetGame,
+                ));
       }
     }
     return winner;
@@ -72,8 +70,7 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           new Expanded(
             child: new GridView.builder(
-              padding: const EdgeInsets.fromLTRB(
-                250, 20, 250, 20),
+              padding: const EdgeInsets.fromLTRB(400, 20, 400, 20),
               gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: GLOBAL_DEFAULT_SIZE,
                 childAspectRatio: 1.0,
@@ -81,25 +78,23 @@ class _HomePageState extends State<HomePage> {
                 mainAxisSpacing: 9.0,
               ),
               itemCount: gameBoard.length(),
-              itemBuilder: (context, i) =>
-              new SizedBox(
-                width: 100.0,
-                height: 100.0,
-                child: new RaisedButton(
-                  padding: const EdgeInsets.all(1.0),
-                  onPressed: gameBoard.at(i).enabled ?
-                    () => playGame(gameBoard.at(i)) : null,
-                  child: new Text(
-                    gameBoard.at(i).text,
-                    style: new TextStyle(
-                      color: Colors.white,
-                      fontSize: 50.0
+              itemBuilder: (context, i) => new SizedBox(
+                    width: 100.0,
+                    height: 100.0,
+                    child: new RaisedButton(
+                      padding: const EdgeInsets.all(1.0),
+                      onPressed: gameBoard.at(i).enabled
+                          ? () => playGame(gameBoard.at(i))
+                          : null,
+                      child: new Text(
+                        gameBoard.at(i).text,
+                        style:
+                            new TextStyle(color: Colors.white, fontSize: 50.0),
+                      ),
+                      color: gameBoard.at(i).bgColor,
+                      disabledColor: gameBoard.at(i).bgColor,
                     ),
                   ),
-                  color: gameBoard.at(i).bgColor,
-                  disabledColor: gameBoard.at(i).bgColor,
-                ),
-              ),
             ),
           ),
         ],

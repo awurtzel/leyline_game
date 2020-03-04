@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:leyline_game/game_button.dart';
 
 class GameBoard {
@@ -18,6 +19,16 @@ class GameBoard {
       pathList.shuffle();
       trialNumber++;
     } while (!isValidPath() && trialNumber <= MAXIMUM_SEED_TRIALS);
+
+    for (int i = 0; i < buttonsList.length; i++) {
+      buttonsList[i].text = pathList[i].toString();
+      if (pathList[i] == 1 || pathList[i] == pathList.length) {
+        buttonsList[i].enabled = true;
+      } else {
+        buttonsList[i].enabled = false;
+        buttonsList[i].bgColor = Colors.blue;
+      }
+    }
   }
 
   void seed(List<int> seedList) {
@@ -33,12 +44,10 @@ class GameBoard {
   }
 
   bool isInLOS(int origin, int destination) {
-    bool los = false;
-
-    los = inSameRow(origin, destination)
-      || inSameColumn(origin, destination);
-      //|| inSameForwardDiag(origin, destination)
-      //|| inSameBackwardDiag(origin, destination);
+    bool los = inSameRow(origin, destination) ||
+        inSameColumn(origin, destination) ||
+        inSameForwardDiag(origin, destination) ||
+        inSameBackwardDiag(origin, destination);
 
     return los;
   }
@@ -53,10 +62,10 @@ class GameBoard {
 
   @override
   bool operator ==(Object other) =>
-    identical(this, other) ||
+      identical(this, other) ||
       other is GameBoard &&
-        runtimeType == other.runtimeType &&
-        buttonsList == other.buttonsList;
+          runtimeType == other.runtimeType &&
+          buttonsList == other.buttonsList;
 
   @override
   int get hashCode => buttonsList.hashCode;
@@ -82,7 +91,28 @@ class GameBoard {
   }
 
   bool inSameBackwardDiag(int origin, int destination) {
-    return false;
+    int indexOfOrigin = pathList.indexOf(origin);
+    int indexOfDestination = pathList.indexOf(destination);
+
+    int columnOfOrigin = (indexOfOrigin % boardSize).floor();
+    int columnOfDestination = (indexOfDestination % boardSize).floor();
+    int rowOfOrigin = (indexOfOrigin / boardSize).floor();
+    int rowOfDestination = (indexOfDestination / boardSize).floor();
+
+    return (columnOfOrigin - rowOfOrigin) ==
+        (columnOfDestination - rowOfDestination);
   }
 
+  bool inSameForwardDiag(int origin, int destination) {
+    int indexOfOrigin = pathList.indexOf(origin);
+    int indexOfDestination = pathList.indexOf(destination);
+
+    int columnOfOrigin = (indexOfOrigin % boardSize).floor();
+    int columnOfDestination = (indexOfDestination % boardSize).floor();
+    int rowOfOrigin = (indexOfOrigin / boardSize).floor();
+    int rowOfDestination = (indexOfDestination / boardSize).floor();
+
+    return (rowOfOrigin - rowOfDestination) ==
+        (columnOfDestination - columnOfOrigin);
+  }
 }
